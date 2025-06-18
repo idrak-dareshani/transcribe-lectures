@@ -1,0 +1,24 @@
+2025-06-18 12:06:59,286 - INFO - Loading Whisper model: large-v3
+2025-06-18 12:07:21,380 - INFO - Model loaded successfully
+2025-06-18 12:07:21,382 - INFO - Starting pipeline for: 112 - SURAH AL-IKHLAAS.mp3
+2025-06-18 12:08:01,283 - INFO - Preprocessed audio: 167.84s duration
+2025-06-18 12:08:01,307 - INFO - Saved preprocessed audio to output\preprocessed_audio\preprocessed_112 - SURAH AL-IKHLAAS.wav
+2025-06-18 12:08:01,339 - INFO - Transcribing: temp_112 - SURAH AL-IKHLAAS.wav
+2025-06-18 12:37:43,808 - INFO - Transcription completed: 1934 characters
+2025-06-18 12:37:43,834 - INFO - Pipeline completed for 112 - SURAH AL-IKHLAAS.mp3 in 1822.43s
+2025-06-18 12:51:36,613 - INFO - Loading Whisper model: base
+2025-06-18 12:51:37,575 - INFO - Model loaded successfully
+2025-06-18 12:51:37,594 - INFO - Loading Whisper model: large-v3
+2025-06-18 12:51:53,648 - INFO - Model loaded successfully
+2025-06-18 12:51:53,649 - INFO - Starting pipeline for: tmpsx74nb9s.wav
+2025-06-18 12:51:55,871 - INFO - Preprocessed audio: 3.00s duration
+2025-06-18 12:51:55,874 - INFO - Saved preprocessed audio to output\preprocessed_audio\preprocessed_tmpsx74nb9s.wav
+2025-06-18 12:51:55,876 - INFO - Transcribing: temp_tmpsx74nb9s.wav
+2025-06-18 12:52:29,322 - INFO - Transcription completed: 7 characters
+2025-06-18 12:52:29,324 - INFO - Pipeline completed for tmpsx74nb9s.wav in 35.67s
+2025-06-18 13:04:11,007 - INFO - Loading Whisper model: large-v3
+2025-06-18 13:04:27,011 - INFO - Model loaded successfully
+2025-06-18 13:04:27,012 - INFO - Starting pipeline for: 112 - SURAH AL-IKHLAAS.mp3
+2025-06-18 13:04:28,979 - INFO - Preprocessed audio: 167.84s duration
+2025-06-18 13:04:28,995 - INFO - Saved preprocessed audio to output\preprocessed_audio\preprocessed_112 - SURAH AL-IKHLAAS.wav
+2025-06-18 13:04:29,010 - INFO - Transcribing: temp_112 - SURAH AL-IKHLAAS.wav
