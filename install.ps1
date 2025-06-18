@@ -22,11 +22,11 @@ try {
 
 # Create virtual environment
 Write-Host "Creating virtual environment..." -ForegroundColor Yellow
-python -m venv quran_pipeline_env
+python -m venv .venv
 
 # Activate virtual environment
 Write-Host "Activating virtual environment..." -ForegroundColor Yellow
-$activateScript = ".\quran_pipeline_env\Scripts\Activate.ps1"
+$activateScript = ".\.venv\Scripts\Activate.ps1"
 
 # Check if activation script exists
 if (Test-Path $activateScript) {
@@ -73,7 +73,7 @@ foreach ($package in $packages) {
 Write-Host "Creating directory structure..." -ForegroundColor Yellow
 $directories = @(
     "output\transcriptions",
-    "output\preprocessed_audio", 
+    "output\preprocessed", 
     "output\reports",
     "input_audio",
     "temp"

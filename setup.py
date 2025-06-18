@@ -8,7 +8,7 @@ setup(
     author="Idrak Dareshani",
     packages=find_packages(),
     install_requires=[
-        "openai-whisper>=20231117",
+        #"openai-whisper>=20231117",
         "librosa>=0.10.0", 
         "soundfile>=0.12.0",
         "numpy>=1.24.0",

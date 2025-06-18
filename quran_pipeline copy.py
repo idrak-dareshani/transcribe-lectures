@@ -24,7 +24,7 @@ logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s',
     handlers=[
-        logging.FileHandler('quran_pipeline.log'),
+        logging.FileHandler('transcription_pipeline.log'),
         logging.StreamHandler()
     ]
 )
@@ -105,17 +105,175 @@ class QuranicTermCorrector:
     def _load_corrections(self) -> Dict[str, str]:
         """Load correction dictionary from file"""
         corrections = {}
+        #     # Common Quranic terms corrections
+        #     'سلس': 'ثلث',
+        #     'سمد': 'صمد',
+        #     'رحمان': 'رحمن',
+        #     'قرآان': 'قرآن',
+        #     'اسلام': 'إسلام',
+        #     'ایمان': 'إیمان',
+        #     'صلاه': 'صلاة',
+        #     'زکاه': 'زکاة',
+        #     'حج': 'حج',
+        #     'روزه': 'صوم',
+        #     'نماز': 'صلاة',
+        #     'توبه': 'توبة',
+        #     'جنت': 'جنة',
+        #     'دوزخ': 'جهنم',
+        #     'فرشته': 'ملائکة',
+        #     'شیطان': 'شیطان',
+        #     'قیامت': 'قیامة',
+        #     'حساب': 'حساب',
+        #     'کتاب': 'کتاب',
+        #     'سنت': 'سنة',
+        #     'حدیث': 'حدیث',
+        #     'علم': 'علم',
+        #     'حکمت': 'حکمة',
+        #     'صبر': 'صبر',
+        #     'شکر': 'شکر',
+        #     'تقوی': 'تقوی',
+        #     'ذکر': 'ذکر',
+        #     'دعا': 'دعاء',
+        #     'استغفار': 'استغفار',
+        #     'تسبیح': 'تسبیح',
+        #     'تهلیل': 'تهلیل',
+        #     'تکبیر': 'تکبیر',
+        #     'محمد': 'محمد',
+        #     'ابراهیم': 'إبراهیم',
+        #     'موسی': 'موسی',
+        #     'عیسی': 'عیسی',
+        #     'مریم': 'مریم',
+        #     'آدم': 'آدم',
+        #     'نوح': 'نوح',
+        #     'یوسف': 'یوسف',
+        #     'داود': 'داود',
+        #     'سلیمان': 'سلیمان',
+        #     'یونس': 'یونس',
+        #     'ایوب': 'أیوب',
+        #     'یعقوب': 'یعقوب',
+        #     'اسحاق': 'إسحاق',
+        #     'اسماعیل': 'إسماعیل',
+        #     'فاتحه': 'فاتحة',
+        #     'بقره': 'بقرة',
+        #     'نساء': 'نساء',
+        #     'مائده': 'مائدة',
+        #     'انعام': 'أنعام',
+        #     'اعراف': 'أعراف',
+        #     'انفال': 'أنفال',
+        #     'توبه': 'توبة',
+        #     'یونس': 'یونس',
+        #     'هود': 'هود',
+        #     'یوسف': 'یوسف',
+        #     'رعد': 'رعد',
+        #     'ابراهیم': 'إبراهیم',
+        #     'حجر': 'حجر',
+        #     'نحل': 'نحل',
+        #     'اسراء': 'إسراء',
+        #     'کهف': 'کهف',
+        #     'مریم': 'مریم',
+        #     'طه': 'طه',
+        #     'انبیاء': 'أنبیاء',
+        #     'حج': 'حج',
+        #     'مومنون': 'مؤمنون',
+        #     'نور': 'نور',
+        #     'فرقان': 'فرقان',
+        #     'شعراء': 'شعراء',
+        #     'نمل': 'نمل',
+        #     'قصص': 'قصص',
+        #     'عنکبوت': 'عنکبوت',
+        #     'روم': 'روم',
+        #     'لقمان': 'لقمان',
+        #     'سجده': 'سجدة',
+        #     'احزاب': 'أحزاب',
+        #     'سبا': 'سبأ',
+        #     'فاطر': 'فاطر',
+        #     'یس': 'یس',
+        #     'صافات': 'صافات',
+        #     'ص': 'ص',
+        #     'زمر': 'زمر',
+        #     'غافر': 'غافر',
+        #     'فصلت': 'فصلت',
+        #     'شوری': 'شوری',
+        #     'زخرف': 'زخرف',
+        #     'دخان': 'دخان',
+        #     'جاثیه': 'جاثیة',
+        #     'احقاف': 'أحقاف',
+        #     'محمد': 'محمد',
+        #     'فتح': 'فتح',
+        #     'حجرات': 'حجرات',
+        #     'ق': 'ق',
+        #     'ذاریات': 'ذاریات',
+        #     'طور': 'طور',
+        #     'نجم': 'نجم',
+        #     'قمر': 'قمر',
+        #     'رحمن': 'رحمن',
+        #     'واقعه': 'واقعة',
+        #     'حدید': 'حدید',
+        #     'مجادله': 'مجادلة',
+        #     'حشر': 'حشر',
+        #     'ممتحنه': 'ممتحنة',
+        #     'صف': 'صف',
+        #     'جمعه': 'جمعة',
+        #     'منافقون': 'منافقون',
+        #     'تغابن': 'تغابن',
+        #     'طلاق': 'طلاق',
+        #     'تحریم': 'تحریم',
+        #     'ملک': 'ملک',
+        #     'قلم': 'قلم',
+        #     'حاقه': 'حاقة',
+        #     'معارج': 'معارج',
+        #     'نوح': 'نوح',
+        #     'جن': 'جن',
+        #     'مزمل': 'مزمل',
+        #     'مدثر': 'مدثر',
+        #     'قیامه': 'قیامة',
+        #     'انسان': 'إنسان',
+        #     'مرسلات': 'مرسلات',
+        #     'نبا': 'نبأ',
+        #     'نازعات': 'نازعات',
+        #     'عبس': 'عبس',
+        #     'تکویر': 'تکویر',
+        #     'انفطار': 'انفطار',
+        #     'مطففین': 'مطففین',
+        #     'انشقاق': 'انشقاق',
+        #     'بروج': 'بروج',
+        #     'طارق': 'طارق',
+        #     'اعلی': 'أعلی',
+        #     'غاشیه': 'غاشیة',
+        #     'فجر': 'فجر',
+        #     'بلد': 'بلد',
+        #     'شمس': 'شمس',
+        #     'لیل': 'لیل',
+        #     'ضحی': 'ضحی',
+        #     'شرح': 'شرح',
+        #     'تین': 'تین',
+        #     'علق': 'علق',
+        #     'قدر': 'قدر',
+        #     'بینه': 'بینة',
+        #     'زلزله': 'زلزلة',
+        #     'عادیات': 'عادیات',
+        #     'قارعه': 'قارعة',
+        #     'تکاثر': 'تکاثر',
+        #     'عصر': 'عصر',
+        #     'همزه': 'همزة',
+        #     'فیل': 'فیل',
+        #     'قریش': 'قریش',
+        #     'ماعون': 'ماعون',
+        #     'کوثر': 'کوثر',
+        #     'کافرون': 'کافرون',
+        #     'نصر': 'نصر',
+        #     'مسد': 'مسد',
+        #     'اخلاص': 'إخلاص',
+        #     'فلق': 'فلق',
+        #     'ناس': 'ناس'
+        # }
         
         # Try to load from file if exists
         try:
             if os.path.exists(self.corrections_file):
                 with open(self.corrections_file, 'r', encoding='utf-8') as f:
-                    file_data = yaml.safe_load(f)
-                    if isinstance(file_data, dict):
-                        if 'corrections' in file_data:
-                            corrections.update(file_data['corrections'])
-                        else:
-                            corrections.update(file_data)
+                    file_corrections = yaml.safe_load(f)
+                    corrections.update(file_corrections)
         except Exception as e:
             logger.warning(f"Could not load corrections file: {e}")
         
@@ -178,7 +336,7 @@ class QuranicTermCorrector:
 class WhisperTranscriber:
     """Handles Whisper transcription with optimization"""
     
-    def __init__(self, model_size: str = "medium"):
+    def __init__(self, model_size: str = "large-v3"):
         self.model_size = model_size
         self.model = None
         self._load_model()
@@ -224,19 +382,19 @@ class QuranicTranscriptionPipeline:
         self.config = self._load_config(config_file)
         self.preprocessor = AudioPreprocessor()
         self.corrector = QuranicTermCorrector()
-        self.transcriber = WhisperTranscriber(self.config.get('model_size', 'medium'))
+        self.transcriber = WhisperTranscriber(self.config.get('model_size', 'large-v3'))
         
         # Create output directories
         self.output_dir = Path(self.config.get('output_dir', 'output'))
         self.output_dir.mkdir(exist_ok=True)
-        (self.output_dir / 'preprocessed').mkdir(exist_ok=True)
+        (self.output_dir / 'preprocessed_audio').mkdir(exist_ok=True)
         (self.output_dir / 'transcriptions').mkdir(exist_ok=True)
         (self.output_dir / 'reports').mkdir(exist_ok=True)
     
     def _load_config(self, config_file: str) -> Dict:
         """Load configuration from file"""
         default_config = {
-            'model_size': 'medium',
+            'model_size': 'large-v3',
             'language': 'ur',
             'output_dir': 'output',
             'save_preprocessed_audio': True,
@@ -268,11 +426,11 @@ class QuranicTranscriptionPipeline:
             
             # Save preprocessed audio if configured
             if self.config.get('save_preprocessed_audio', True):
-                preprocessed_path = self.output_dir / 'preprocessed' / f"{audio_path.stem}.mp3"
+                preprocessed_path = self.output_dir / 'preprocessed_audio' / f"preprocessed_{audio_path.stem}.wav"
                 self.preprocessor.save_preprocessed(audio, sr, str(preprocessed_path))
             
             # Step 2: Transcribe
-            temp_audio_path = f"temp/{audio_path.stem}.mp3"
+            temp_audio_path = f"temp/{audio_path.stem}.wav"
             sf.write(temp_audio_path, audio, sr)
             
             whisper_result = self.transcriber.transcribe(
@@ -367,7 +525,7 @@ class QuranicTranscriptionPipeline:
     
     def _generate_report(self, filename: str, result: TranscriptionResult):
         """Generate processing report"""
-        report_file = self.output_dir / 'reports' / f"{filename}.txt"
+        report_file = self.output_dir / 'reports' / f"{filename}_report.txt"
         
         avg_confidence = np.mean(result.confidence_scores) if result.confidence_scores else 0.0
         
@@ -447,7 +605,7 @@ def main():
     parser.add_argument('input', help='Input audio file or directory')
     parser.add_argument('--config', default='pipeline_config.yaml', help='Configuration file')
     parser.add_argument('--batch', action='store_true', help='Process directory of files')
-    parser.add_argument('--model', default='medium', help='Whisper model size')
+    parser.add_argument('--model', default='large-v3', help='Whisper model size')
     parser.add_argument('--language', default='ur', help='Audio language')
     
     args = parser.parse_args()

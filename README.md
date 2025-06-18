@@ -21,14 +21,14 @@ A comprehensive, production-ready pipeline for transcribing and correcting Urdu/
 ```bash
 # Clone or download the pipeline files
 chmod +x install.sh
-./install.sh
+./install.sh (on Windows .\install.ps1)
 ```
 
 ### Manual Installation
 ```bash
 # Create virtual environment
-python3 -m venv quran_pipeline_env
-source quran_pipeline_env/bin/activate
+python3 -m venv .venv
+source .venv/bin/activate
 
 # Install dependencies
 pip install -r requirements.txt
@@ -71,9 +71,9 @@ generate_report: true
 
 ```
 output/
-├── transcriptions/          # JSON and text files
-├── preprocessed_audio/      # Cleaned audio files
-└── reports/                # Processing reports
+├── transcriptions/    # JSON and text files
+├── preprocessed/      # Cleaned audio files
+└── reports/           # Processing reports
 ```
 
 ## Correction Dictionary

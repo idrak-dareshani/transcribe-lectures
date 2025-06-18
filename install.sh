@@ -14,8 +14,8 @@ fi
 
 # Create virtual environment
 echo "Creating virtual environment..."
-python3 -m venv quran_pipeline_env
-source quran_pipeline_env/bin/activate
+python3 -m venv .venv
+source .venv/bin/activate
 
 # Upgrade pip
 echo "Upgrading pip..."
@@ -38,7 +38,7 @@ pip install scipy>=1.11.0
 # Create directory structure
 echo "Creating directory structure..."
 mkdir -p output/transcriptions
-mkdir -p output/preprocessed_audio
+mkdir -p output/preprocessed
 mkdir -p output/reports
 mkdir -p input_audio
 mkdir -p temp
