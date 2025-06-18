@@ -1,4 +1,6 @@
-/.env
-/.venv
-/data
-/models
+__pycache__
+/quran_pipeline_env
+/input_audio
+/output
+/temp
+transcription_pipeline.log

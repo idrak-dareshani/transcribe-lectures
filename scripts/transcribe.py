@@ -17,15 +17,16 @@ os.makedirs(OUTPUT_DIR, exist_ok=True)
 import whisper
 # Load the Whisper model   
 #model = whisper.load_model("large-v3", language="ur", download_root="./models/whisper-largev3-junev9")
-model = whisper.load_model("large-v3", temprature=0.0, beam_size=5, patience=1.0, language="ur")
+model = whisper.load_model("large-v3")
 
 def transcribe_file(filepath):
     #wav_path = convert_to_wav(filepath)
-    result = model.transcribe(filepath, language="ur", verbose=True)
+    result = model.transcribe(filepath, language="ur", task="transcribe", word_timestamps=True, 
+                              temperature=0.0, beam_size=5.0, best_of=5, fp16=False, verbose=True)
     result_text = clean_transcription(result["text"])
     result_text = highlight_quranic_references(result_text)
-    corrector = IslamicUrduCorrector()
-    result_text = corrector.apply_corrections(result_text)  # Assuming apply_corrections is defined in utils.py
+    #corrector = IslamicUrduCorrector()
+    #result_text = corrector.apply_corrections(result_text)  # Assuming apply_corrections is defined in utils.py
 
     return result_text, result["segments"]
 

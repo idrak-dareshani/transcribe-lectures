@@ -1,4 +1,10 @@
-#whisper (use git)
-ffmpeg-python
-numpy
-tqdm
+# requirements.txt content
+#openai-whisper>=20231117
+librosa>=0.10.0
+soundfile>=0.12.0
+numpy>=1.24.0
+PyYAML>=6.0
+requests>=2.31.0
+scipy>=1.11.0
+torch>=2.1.0
+torchaudio>=2.1.0
