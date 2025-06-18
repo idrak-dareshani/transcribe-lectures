@@ -1,0 +1,4 @@
+#whisper (use git)
+ffmpeg-python
+numpy
+tqdm
