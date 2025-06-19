@@ -30,6 +30,9 @@ chmod +x install.sh
 python3 -m venv .venv
 source .venv/bin/activate
 
+# Install whisper
+pip install git+https://github.com/openai/whisper.git
+
 # Install dependencies
 pip install -r requirements.txt
 
@@ -59,7 +62,7 @@ python quran_pipeline.py --config custom_config.yaml input_audio/lecture.mp3
 Edit `pipeline_config.yaml` to customize:
 
 ```yaml
-model_size: "large-v3"
+model_size: "medium"
 language: "ur"
 confidence_threshold: 0.8
 output_dir: "output"
