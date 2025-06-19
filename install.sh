@@ -27,7 +27,7 @@ pip install torch torchvision torchaudio --index-url https://download.pytorch.or
 
 # Install other requirements
 echo "Installing requirements..."
-pip install openai-whisper>=20231117
+pip install git+https://github.com/openai/whisper.git
 pip install librosa>=0.10.0
 pip install soundfile>=0.12.0
 pip install numpy>=1.24.0
@@ -45,7 +45,7 @@ mkdir -p temp
 
 # Download initial Whisper model
 echo "Downloading Whisper model (this may take a few minutes)..."
-python3 -c "import whisper; whisper.load_model('large-v3')"
+python3 -c "import whisper; whisper.load_model('medium')"
 
 echo "Setup complete!"
 echo ""

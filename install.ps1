@@ -40,6 +40,15 @@ if (Test-Path $activateScript) {
 Write-Host "Upgrading pip..." -ForegroundColor Yellow
 python -m pip install --upgrade pip
 
+# Install Whisper
+Write-Host "Installing Whisper..." -ForegroundColor Yellow
+pip install git+https://github.com/openai/whisper.git
+
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "Error: Failed to install PyTorch" -ForegroundColor Red
+    exit 1
+}
+
 # Install PyTorch (CPU version - adjust for GPU if needed)
 Write-Host "Installing PyTorch..." -ForegroundColor Yellow
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
@@ -52,7 +61,6 @@ if ($LASTEXITCODE -ne 0) {
 # Install other requirements
 Write-Host "Installing requirements..." -ForegroundColor Yellow
 $packages = @(
-    "openai-whisper>=20231117",
     "librosa>=0.10.0",
     "soundfile>=0.12.0",
     "numpy>=1.24.0",
@@ -88,7 +96,7 @@ foreach ($dir in $directories) {
 
 # Download initial Whisper model
 Write-Host "Downloading Whisper model (this may take a few minutes)..." -ForegroundColor Yellow
-python -c "import whisper; whisper.load_model('large-v3')"
+python -c "import whisper; whisper.load_model('medium')"
 
 if ($LASTEXITCODE -eq 0) {
     Write-Host "Setup complete!" -ForegroundColor Green
