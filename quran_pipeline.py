@@ -178,8 +178,13 @@ class QuranicTermCorrector:
 class WhisperTranscriber:
     """Handles Whisper transcription with optimization"""
     
-    def __init__(self, model_size: str = "medium"):
-        self.model_size = model_size
+    def __init__(self, config: Dict):
+        self.model_size = config.get("model_size", "medium")
+        self.language = config.get("language", "ur")
+        self.word_timestamps=config.get("word_timestamps", True)
+        self.temperature=config.get("temperature", 0.0)
+        self.beam_size=config.get("beam_size", 1)
+        self.best_of=config.get("best_of", 1)
         self.model = None
         self._load_model()
     
@@ -193,20 +198,20 @@ class WhisperTranscriber:
             logger.error(f"Error loading model: {e}")
             raise
     
-    def transcribe(self, audio_path: str, language: str = "ur") -> Dict:
+    def transcribe(self, audio_path: str) -> Dict:
         """Transcribe audio with optimized settings"""
         try:
             logger.info(f"Transcribing: {audio_path}")
             
             result = self.model.transcribe(
                 audio_path,
-                language=language,
                 task="transcribe",
-                word_timestamps=True,
-                temperature=0.0,  # More deterministic
-                beam_size=5,      # Better beam search
-                best_of=5,        # Multiple attempts
-                fp16=False,       # Better precision
+                language=self.language,
+                word_timestamps=self.word_timestamps,
+                temperature=self.temperature,               # More deterministic
+                beam_size=self.beam_size,                   # Better beam search
+                best_of=self.best_of,                       # Multiple attempts
+                fp16=False,                                 # Better precision
                 verbose=False
             )
             
@@ -224,7 +229,7 @@ class QuranicTranscriptionPipeline:
         self.config = self._load_config(config_file)
         self.preprocessor = AudioPreprocessor()
         self.corrector = QuranicTermCorrector()
-        self.transcriber = WhisperTranscriber(self.config.get('model_size', 'medium'))
+        self.transcriber = WhisperTranscriber(self.config)
         
         # Create output directories
         self.output_dir = Path(self.config.get('output_dir', 'output'))
@@ -268,17 +273,14 @@ class QuranicTranscriptionPipeline:
             
             # Save preprocessed audio if configured
             if self.config.get('save_preprocessed_audio', True):
-                preprocessed_path = self.output_dir / 'preprocessed' / f"{audio_path.stem}.mp3"
+                preprocessed_path = self.output_dir / 'preprocessed' / f"{audio_path.stem}.wav"
                 self.preprocessor.save_preprocessed(audio, sr, str(preprocessed_path))
             
             # Step 2: Transcribe
-            temp_audio_path = f"temp/{audio_path.stem}.mp3"
+            temp_audio_path = f"temp/{audio_path.stem}.wav"
             sf.write(temp_audio_path, audio, sr)
             
-            whisper_result = self.transcriber.transcribe(
-                temp_audio_path, 
-                self.config.get('language', 'ur')
-            )
+            whisper_result = self.transcriber.transcribe(temp_audio_path)
             
             # Cleanup temp file
             os.remove(temp_audio_path)

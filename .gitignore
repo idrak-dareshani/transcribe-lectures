@@ -1,5 +1,5 @@
 __pycache__
-/quran_pipeline_env
+/.venv
 /input_audio
 /output
 /temp

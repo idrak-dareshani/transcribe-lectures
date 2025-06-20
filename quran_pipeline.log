@@ -1,0 +1,27 @@
+2025-06-20 16:18:52,728 - INFO - Loading Whisper model: medium
+2025-06-20 16:19:01,041 - INFO - Model loaded successfully
+2025-06-20 16:19:01,043 - INFO - Processing 1 files from input_audio
+2025-06-20 16:19:01,043 - INFO - Starting pipeline for: 112 - SURAH AL-IKHLAAS.mp3
+2025-06-20 16:19:28,639 - INFO - Preprocessed audio: 167.84s duration
+2025-06-20 16:19:28,655 - INFO - Saved preprocessed audio to output\preprocessed\112 - SURAH AL-IKHLAAS.wav
+2025-06-20 16:19:28,670 - INFO - Transcribing: temp/112 - SURAH AL-IKHLAAS.wav
+2025-06-20 16:19:28,671 - ERROR - Error during transcription: 'WhisperTranscriber' object has no attribute 'config'
+2025-06-20 16:19:28,671 - ERROR - Pipeline failed for 112 - SURAH AL-IKHLAAS.mp3: 'WhisperTranscriber' object has no attribute 'config'
+2025-06-20 16:19:28,671 - ERROR - Failed to process 112 - SURAH AL-IKHLAAS.mp3: 'WhisperTranscriber' object has no attribute 'config'
+2025-06-20 16:36:40,100 - INFO - Loading Whisper model: medium
+2025-06-20 16:36:48,302 - INFO - Model loaded successfully
+2025-06-20 16:36:48,304 - INFO - Processing 1 files from input_audio
+2025-06-20 16:36:48,304 - INFO - Starting pipeline for: 112 - SURAH AL-IKHLAAS.mp3
+2025-06-20 16:36:50,750 - INFO - Preprocessed audio: 167.84s duration
+2025-06-20 16:36:50,765 - INFO - Saved preprocessed audio to output\preprocessed\112 - SURAH AL-IKHLAAS.wav
+2025-06-20 16:36:50,780 - ERROR - Pipeline failed for 112 - SURAH AL-IKHLAAS.mp3: WhisperTranscriber.transcribe() takes 2 positional arguments but 3 were given
+2025-06-20 16:36:50,781 - ERROR - Failed to process 112 - SURAH AL-IKHLAAS.mp3: WhisperTranscriber.transcribe() takes 2 positional arguments but 3 were given
+2025-06-20 16:38:13,978 - INFO - Loading Whisper model: medium
+2025-06-20 16:38:22,090 - INFO - Model loaded successfully
+2025-06-20 16:38:22,092 - INFO - Processing 1 files from input_audio
+2025-06-20 16:38:22,092 - INFO - Starting pipeline for: 112 - SURAH AL-IKHLAAS.mp3
+2025-06-20 16:38:24,017 - INFO - Preprocessed audio: 167.84s duration
+2025-06-20 16:38:24,032 - INFO - Saved preprocessed audio to output\preprocessed\112 - SURAH AL-IKHLAAS.wav
+2025-06-20 16:38:24,046 - INFO - Transcribing: temp/112 - SURAH AL-IKHLAAS.wav
+2025-06-20 16:42:48,091 - INFO - Transcription completed: 2001 characters
+2025-06-20 16:42:48,118 - INFO - Pipeline completed for 112 - SURAH AL-IKHLAAS.mp3 in 266.00s

@@ -23,8 +23,8 @@ audio:
 # Transcription Settings
 transcription:
   temperature: 0.0     # 0.0 for most deterministic, higher for more creative
-  beam_size: 5         # Beam search size
-  best_of: 5          # Number of attempts
+  beam_size: 1         # Beam search size
+  best_of: 1          # Number of attempts
   word_timestamps: true
   
 # Correction Settings
