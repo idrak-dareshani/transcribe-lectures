@@ -1,6 +1,5 @@
 __pycache__
 /.venv
-/input_audio
+/input
 /output
 /temp
-quran_pipeline.log
