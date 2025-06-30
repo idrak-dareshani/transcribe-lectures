@@ -207,7 +207,7 @@ class AudioPreprocessor:
         audio, sr = librosa.load(self.audio_path, sr=None)
         audio_resampled = librosa.resample(audio, orig_sr=sr, target_sr=target_sr)
         
-        output_path = self.output_dir / f"{self.audio_path.stem}_resampled.wav"
+        output_path = self.output_dir / f"{self.audio_path.stem}.wav"
         sf.write(output_path, audio_resampled, target_sr)
         
         print(f"✓ Resampled audio saved: {output_path}")
@@ -257,7 +257,7 @@ class AudioPreprocessor:
         else:
             audio_normalized = audio
         
-        output_path = self.output_dir / f"{self.audio_path.stem}_normalized.wav"
+        output_path = self.output_dir / f"{self.audio_path.stem}.wav"
         sf.write(output_path, audio_normalized, sr)
         
         print(f"✓ Normalized audio saved: {output_path}")
@@ -274,7 +274,7 @@ class AudioPreprocessor:
             # Apply noise reduction
             audio_denoised = nr.reduce_noise(y=audio, sr=sr)
             
-            output_path = self.output_dir / f"{self.audio_path.stem}_denoised.wav"
+            output_path = self.output_dir / f"{self.audio_path.stem}.wav"
             sf.write(output_path, audio_denoised, sr)
             
             print(f"✓ Denoised audio saved: {output_path}")
